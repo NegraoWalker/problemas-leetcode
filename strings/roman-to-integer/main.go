@@ -3,16 +3,29 @@ package main
 import "fmt"
 
 func romanToInt(s string) int {
-	values := map[byte]int{'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
-	sum := 0
+
+	romanToInt := map[byte]int{
+		'I': 1,
+		'V': 5,
+		'X': 10,
+		'L': 50,
+		'C': 100,
+		'D': 500,
+		'M': 1000,
+	}
+
+	result := 0
+
 	for i := 0; i < len(s); i++ {
-		if i+1 < len(s) && values[s[i]] < values[s[i+1]] {
-			sum -= values[s[i]]
+		if i+1 < len(s) && romanToInt[s[i]] < romanToInt[s[i+1]] {
+			result -= romanToInt[s[i]]
 		} else {
-			sum += values[s[i]]
+			result += romanToInt[s[i]]
 		}
 	}
-	return sum
+
+	return result
+
 }
 
 func main() {
@@ -26,5 +39,8 @@ func main() {
 	fmt.Println(romanToInt(s))
 
 	s = "IV"
+	fmt.Println(romanToInt(s))
+
+	s = "CD"
 	fmt.Println(romanToInt(s))
 }
